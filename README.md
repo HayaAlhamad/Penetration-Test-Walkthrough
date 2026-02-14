@@ -34,7 +34,9 @@ This phase covers the steps taken to gain an initial foothold on the target mach
 ### 2.1. Web Enumeration (Port 80)
 The web page on port 80 contained a hidden comment with a string of characters. This was identified as a Brainfuck cipher. Decoding the cipher revealed a potential password.
 
-*(See `brainfuck-cipher.png` for the cipher and its decoded output.)*
+*(See `brainfuck-cipher.png` for the cipher found in the page source.)*
+*(See `brainfuck-cipher-result.png` for the decoded password.)*
+
 
 ### 2.2. SMB Enumeration
 `enum4linux` was used to enumerate the SMB service, which revealed a valid username: `cyber`.
@@ -42,7 +44,10 @@ The web page on port 80 contained a hidden comment with a string of characters. 
 ### 2.3. Webmin Access & Reverse Shell
 The discovered credentials (`cyber` and the decoded password) were used to log into the Webmin service on port 20000. The Webmin interface included a command shell utility, which was used to execute a `bash` reverse shell payload. This successfully established a connection back to a `netcat` listener on the attacker machine, achieving Remote Code Execution (RCE).
 
-*(See `webmin-access-and-rce.png` for a visual of the Webmin login and reverse shell execution.)*
+*(See `The Webmin login.png` for the successful login page.)*
+*(See `reverse shell command-1.png` for the reverse shell payload.)*
+*(See `reverse shell command-2.png` for the successful connection on the attacker machine.)*
+
 
 ---
 
